@@ -1,0 +1,26 @@
+<div ui-view>
+    <div class="row">
+        <div class="col-xs-12 col-sm-5">
+            <h1 class="main-title">Новости / News</h1>
+            <div class="main-news" ng-repeat="item in news.results">
+                <h2 class="news-title">
+                    <a href ui-sref="news.item({newsId: item.id})" class="link">[[item.title]]</a>
+                </h2>
+                <a href ui-sref="news.item({newsId: item.id})">
+                    <img ng-src="[[ item.images[0].preview_md ]]" />
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-7">
+            <h1 class="main-title">Релизы / Releases</h1>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 main-release" ng-repeat="item in releases.results">
+                    <h2 class="release-title">
+                        <a href ui-sref="releases.item({releaseId: item.id})" class="link">[[item.name]]</a>
+                    </h2>
+                    <div ng-bind-html="item.embed"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

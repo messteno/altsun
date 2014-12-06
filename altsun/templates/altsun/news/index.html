@@ -1,0 +1,13 @@
+<div ui-view class="news">
+    <h1><span class="page-title">Новости / News</span></h1>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="item in news">
+            <h2 class="news-title">
+                <a href ui-sref="news.item({newsId: item.id})" class="link">[[item.title]]</a>
+            </h2>
+            <a href ui-sref="news.item({newsId: item.id})">
+                <img ng-src="[[ item.images[0].preview_sm ]]" />
+            </a>
+        </div>
+    </div>
+</div>

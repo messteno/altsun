@@ -1,0 +1,13 @@
+<div ui-view class="artists">
+    <h1><span class="page-title">Артисты / Artists</span></h1>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="artist in artists">
+            <h2 class="news-title">
+                <a href ui-sref="artists.item({artistId: artist.id})" class="link">[[artist.name]]</a>
+            </h2>
+            <a href ui-sref="artists.item({artistId: artist.id})">
+                <img ng-src="[[ artist.images[0].preview_sm ]]" />
+            </a>
+        </div>
+    </div>
+</div>

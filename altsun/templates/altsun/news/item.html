@@ -1,0 +1,25 @@
+<div ui-view class="news">
+    <h1><span class="page-title">Новости / News</span></h1>
+    <div class="row">
+        <div class="col-sm-8 col-xs-12">
+            <h2 class="news-title">[[news.title]]</h2>
+            <carousel interval="5000" disable-animation="true">
+                <slide ng-repeat="image in news.images" active="slida.active">
+                    <img ng-src="[[ image.preview_md ]]" />
+                </slide>
+            </carousel>
+            <div class="news-content">
+                [[ news.content ]]
+                <div class="date">[[ news.create_date | date : 'dd/MM/yyyy']]</div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 col-xs-6 neigbour" ng-repeat="neigbour in news.neigbours">
+            <h2 class="news-title">
+                <a href ui-sref="news.item({newsId: neigbour.id})" class="link">[[neigbour.title]]</a>
+            </h2>
+            <a href ui-sref="news.item({newsId: neigbour.id})">
+                <img ng-src="[[ neigbour.images[0].preview_sm ]]" />
+            </a>
+        </div>
+    </div>
+</div>

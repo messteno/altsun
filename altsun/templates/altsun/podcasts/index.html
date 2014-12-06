@@ -1,0 +1,11 @@
+<div ui-view class="releases">
+    <h1><span class="page-title">Подкасты / Podcasts</span></h1>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="release in releases">
+            <h2 class="news-title">
+                <a href ui-sref="podcasts.item({podcastId: release.id})" class="link">[[release.name]]</a>
+            </h2>
+            <div ng-bind-html="release.embed"></div>
+        </div>
+    </div>
+</div>

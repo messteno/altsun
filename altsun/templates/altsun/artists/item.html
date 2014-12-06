@@ -1,0 +1,24 @@
+<div ui-view class="artist">
+    <h1><span class="page-title">Артисты / Artists</span></h1>
+    <div class="row">
+        <div class="col-sm-8 col-xs-12">
+            <h2 class="artist-title">[[artist.name]]</h2>
+            <carousel interval="5000" disable-animation="true">
+                <slide ng-repeat="image in artist.images" active="slida.active">
+                    <img ng-src="[[ image.preview_md ]]" />
+                </slide>
+            </carousel>
+            <div class="artist-content">
+                [[ artist.biography ]]
+            </div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 col-xs-6">
+            <div class="release" ng-repeat="release in artist.releases">
+                <h2 class="release-title">
+                    <a href ui-sref="releases.item({releasesId: release.id})" class="link">[[release.name]]</a>
+                </h2>
+                <div ng-bind-html="release.embed"></div>
+            </div>
+        </div>
+    </div>
+</div>
