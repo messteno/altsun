@@ -1,1 +1,0 @@
-uwsgi --socket altsun.sock --mount /altsun=altsun/wsgi.py --enable-threads --chmod-socket=770 --daemonize /var/www/alt-sun.com/logs/uwsgi.log --manage-script-name
