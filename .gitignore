@@ -9,4 +9,4 @@ local_settings.py
 /static
 /bower
 /media
-uwsgi_start
+uwsgi-start
