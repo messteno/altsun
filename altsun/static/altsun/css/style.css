@@ -124,6 +124,14 @@ h1.main-title {
     border-radius: 3px;
 }
 
+h1.main-release-title {
+    color: black;
+    background: rgba(200,200,200,0.6);
+    padding: 2px 20px 6px 20px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
 h1 span.page-title {
     color: black;
     background: rgba(200,200,200,0.6);
