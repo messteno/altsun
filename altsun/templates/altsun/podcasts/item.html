@@ -12,7 +12,7 @@
         <div class="col-sm-3 col-sm-offset-1 col-xs-6">
             <div class="neigbour" ng-repeat="neigbour in release.neigbours">
                 <h2 class="release-title">
-                    <a href ui-sref="releases.item({releasesId: neigbour.id})" class="link">[[neigbour.name]]</a>
+                    <a href ui-sref="podcasts.item({podcastId: neigbour.id})" class="link">[[neigbour.name]]</a>
                 </h2>
                 <div ng-bind-html="neigbour.embed"></div>
             </div>
