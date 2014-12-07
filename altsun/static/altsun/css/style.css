@@ -142,7 +142,7 @@ h1 span.page-title {
 h2.artist-title,
 h2.release-title,
 h2.news-title {
-    padding: 10px 0;
+    padding: 10px;
     margin-top: 10px;
     margin-bottom: 5px;
     font-size: 1.3em;
