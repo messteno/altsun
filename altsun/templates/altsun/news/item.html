@@ -9,7 +9,7 @@
                 </slide>
             </carousel>
             <div class="news-content">
-                [[ news.content ]]
+                <div ng-bind-html='news.content'></div>
                 <div class="date">[[ news.create_date | date : 'dd/MM/yyyy']]</div>
             </div>
         </div>
