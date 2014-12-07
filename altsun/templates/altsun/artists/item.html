@@ -15,7 +15,7 @@
         <div class="col-sm-3 col-sm-offset-1 col-xs-6">
             <div class="release" ng-repeat="release in artist.releases">
                 <h2 class="release-title">
-                    <a href ui-sref="releases.item({releasesId: release.id})" class="link">[[release.name]]</a>
+                    <a ng-href="[[release.link]]" class="link">[[release.name]]</a>
                 </h2>
                 <div ng-bind-html="release.embed"></div>
             </div>

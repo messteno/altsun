@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 main-release" ng-repeat="item in releases.results">
                     <h2 class="release-title">
-                        <a href ui-sref="releases.item({releaseId: item.id})" class="link">[[item.name]]</a>
+                        <a ng-href="[[item.link]]" class="link">[[item.name]]</a>
                     </h2>
                     <div ng-bind-html="item.embed"></div>
                 </div>

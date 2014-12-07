@@ -4,6 +4,7 @@ from embed_video.fields import EmbedVideoField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from utils import get_uuid_file_path
+from embed_video import backends
 
 
 class Artist(models.Model):
@@ -60,12 +61,18 @@ class Release(models.Model):
                                        default=timezone.now,
                                        verbose_name=u'Дата публикации')
     release = EmbedVideoField(verbose_name=u'Ссылка')
+    embed = models.TextField(null=True, blank=True)
     podcast = models.BooleanField(default=False, verbose_name=u'Подкаст')
     artist = models.ForeignKey(Artist, null=True, blank=True, related_name='releases')
 
     class Meta:
         verbose_name = u'релизы и подкасты'
         verbose_name_plural = u'релизы и подкасты'
+
+    def save(self, *args, **kwargs):
+        backend = backends.SoundCloudBackend(self.release)
+        self.embed = backend.get_embed_code(400, 200)
+        super(Release, self).save(*args, **kwargs)
 
     def get_neigbours(self):
         prev_count = 2

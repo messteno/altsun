@@ -10,16 +10,11 @@ class ReleaseSerializer(serializers.ModelSerializer):
     content = serializers.CharField(required=True)
     release = serializers.CharField(required=True)
     create_date = serializers.DateTimeField(required=True)
-    release_embed = serializers.SerializerMethodField()
-
-    def get_release_embed(self, obj):
-        backend = backends.SoundCloudBackend(obj.release)
-        embed = backend.get_embed_code(400, 200)
-        return embed
 
     class Meta:
         model = Release
-        fields = ('id', 'name', 'content', 'create_date', 'release', 'release_embed', )
+        fields = ('id', 'name', 'content', 'create_date', 'release', 
+                  'embed', 'podcast', )
 
 
 class ArtistImageSerializer(serializers.ModelSerializer):
