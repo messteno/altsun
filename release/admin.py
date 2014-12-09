@@ -6,6 +6,7 @@ from embed_video.fields import EmbedVideoField
 from django.contrib.admin.widgets import AdminFileWidget
 from django import forms
 from django.utils.safestring import mark_safe
+from django_summernote.admin import SummernoteModelAdmin
 
 
 class ArtistImageAdmin(admin.ModelAdmin):
@@ -44,7 +45,7 @@ class ImagesInline(admin.TabularInline):
     form = GalleryImageForm
 
 
-class ArtistAdmin(admin.ModelAdmin):
+class ArtistAdmin(SummernoteModelAdmin):
     list_display_links = ('id', )
     list_display = ('id', 'name', 'biography', )
     search_fields = ('name', 'biography', )
@@ -56,7 +57,7 @@ class ArtistAdmin(admin.ModelAdmin):
 admin.site.register(Artist, ArtistAdmin)
 
 
-class ReleaseAdmin(AdminVideoMixin, admin.ModelAdmin):
+class ReleaseAdmin(SummernoteModelAdmin):
     list_display_links = ('id', )
     list_display = ('id', 'name', 'content', 'release', 'podcast', )
     search_fields = ('name', 'content', )

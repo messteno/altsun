@@ -4,6 +4,7 @@ from django.contrib.admin.widgets import AdminFileWidget
 from django.db import models
 from django import forms
 from django.utils.safestring import mark_safe
+from django_summernote.admin import SummernoteModelAdmin
 
 
 class NewsImageAdmin(admin.ModelAdmin):
@@ -39,7 +40,7 @@ class ImagesInline(admin.TabularInline):
     form = GalleryImageForm
 
 
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(SummernoteModelAdmin):
     list_display_links = ('id', )
     list_display = ('id', 'title', 'content', 'create_date', )
     search_fields = ('title', 'content', )
