@@ -144,11 +144,19 @@ h2.release-title,
 h2.news-title {
     height: 3.2em;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 5px;
     font-size: 1.3em;
     background: rgba(0,0,0,0.8);
     text-align: center;
+}
+
+.main-release-sc {
+    height: 285px;
+}
+
+.main-releases {
+    padding-top: 10px;
 }
 
 h2 .link {
@@ -199,6 +207,7 @@ h2 .link:hover {
 .main-release,
 .main-news {
     margin-bottom: 20px;
+    margin-top: 0;
 }
 
 .main-news img {
