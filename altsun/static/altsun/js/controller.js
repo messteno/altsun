@@ -12,15 +12,6 @@ app.controller('MainCtrl', function($scope, $modal, $window, $location, $sce, lo
         });
     };
 
-    $scope.login = function() {
-        var modalInstance = $modal.open({
-            templateUrl: '/static/mesteno/login.html',
-            controller: 'LoginModalCtrl',
-            windowClass: 'login-modal',
-            scope: $scope,
-        });
-    };
-
     $scope.news = News.get({page: 1, count: 2});
     $scope.releases = Releases.get({page: 1, count: 4}, function() {
         for (var i = 0; i < $scope.releases.results.length; i++) {
@@ -54,7 +45,7 @@ app.controller('ReleasesCtrl', function($scope, $sce, Releases) {
     });
 });
 
-app.controller('ReleasesItemCtrl', function($scope, $state, $stateParams, $sce, ReleasesItem) {
+app.controller('ReleasesItemCtrl', function($scope, $state, $stateParams, $sce, $modal, ReleasesItem) {
     $scope.release = ReleasesItem.get({releaseId: $stateParams.releaseId}, function() {
         $scope.release.embed = $sce.trustAsHtml($scope.release.embed);
         for (var i = 0; i < $scope.release.neigbours.length; i++) {
@@ -63,6 +54,29 @@ app.controller('ReleasesItemCtrl', function($scope, $state, $stateParams, $sce, 
     }, function() {
         $state.go('404');
     });
+
+    $scope.downloadArchive = function() {
+        var modalInstance = $modal.open({
+            templateUrl: '/static/altsun/releases/download.html',
+            controller: 'DownloadReleaseModalCtrl',
+            windowClass: 'release-download-modal',
+            size: 'sm',
+            scope: $scope,
+            resolve: {
+                releaseId: function() {
+                    return $stateParams.releaseId;
+                }
+            }
+        });
+    };
+});
+
+app.controller('DownloadReleaseModalCtrl', function($scope, $modalInstance, releaseId, Form) {
+    $scope.form = new Form($scope, '/api/releases/download/', function(data, params) {
+        $modalInstance.close();
+    });
+    $scope.form.data.release = releaseId;
+    $scope.form.method = 'POST';
 });
 
 app.controller('PodcastsCtrl', function($scope, $sce, Releases) {
@@ -73,7 +87,7 @@ app.controller('PodcastsCtrl', function($scope, $sce, Releases) {
     });
 });
 
-app.controller('PodcastsItemCtrl', function($scope, $stateParams, $sce, ReleasesItem) {
+app.controller('PodcastsItemCtrl', function($scope, $state, $stateParams, $sce, ReleasesItem) {
     $scope.release = ReleasesItem.get({releaseId: $stateParams.podcastId}, function() {
         $scope.release.embed = $sce.trustAsHtml($scope.release.embed);
         for (var i = 0; i < $scope.release.neigbours.length; i++) {

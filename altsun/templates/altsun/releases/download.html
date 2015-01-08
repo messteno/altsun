@@ -1,0 +1,13 @@
+<div class="panel-body">
+    <form accept-charset="UTF-8" role="form" action="" ng-submit="form.submit()">
+    <fieldset>
+        <div class="form-group">
+            <alert ng-show="form.error.email" type="danger">[[form.error.email]]</alert>
+            <input class="form-control" placeholder="E-mail" ng-model="form.data.email" focus-me="form.focus.email" type="text">
+        </div>
+        <alert ng-show="form.error.release" type="danger">[[form.error.release]]</alert>
+        <alert ng-show="form.error.__all__" close="form.closeAlert('__all__')" type="danger">[[form.error.__all__]]</alert>
+        <input class="btn btn-lg btn-success btn-block" type="submit" value="Получить ссылку на e-mail">
+    </fieldset>
+    </form>
+</div>

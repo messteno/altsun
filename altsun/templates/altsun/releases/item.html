@@ -7,6 +7,11 @@
             <div class="release-content">
                 <div ng-bind-html='release.content'></div>
                 <div class="date">[[ release.create_date | date : 'dd/MM/yyyy']]</div>
+                <div class="download" ng-show="release.has_archive">
+                    <button class="btn btn-success mt-5 mb-5" ng-click="downloadArchive()">
+                        <i class="glyphicon glyphicon-download mr-5"></i>Free download
+                    </button>
+                </div>
             </div>
         </div>
         <div class="col-sm-3 col-sm-offset-1 col-xs-6">

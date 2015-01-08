@@ -3,8 +3,9 @@ from django.utils import timezone
 from embed_video.fields import EmbedVideoField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
-from utils import get_uuid_file_path
+from utils import get_uuid_file_path, get_media_url_path
 from embed_video import backends
+from django.conf import settings
 
 
 class Artist(models.Model):
@@ -26,7 +27,6 @@ class Artist(models.Model):
 
 def get_artists_image_path(instance, filename):
     return get_uuid_file_path('artists', filename)
-
 
 
 class ArtistImage(models.Model):
@@ -61,9 +61,11 @@ class Release(models.Model):
                                        default=timezone.now,
                                        verbose_name=u'Дата публикации')
     release = EmbedVideoField(verbose_name=u'Ссылка')
-    embed = models.TextField(null=True, blank=True)
+    embed = models.TextField(null=True, blank=True, editable=False)
     podcast = models.BooleanField(default=False, verbose_name=u'Подкаст')
     artist = models.ForeignKey(Artist, null=True, blank=True, related_name='releases')
+    archive = models.FileField(upload_to='releases',
+                               blank=True, null=True)
 
     class Meta:
         verbose_name = u'релизы и подкасты'
@@ -93,6 +95,9 @@ class Release(models.Model):
             except:
                 pass
         return neigbours
+
+    def get_archive(self):
+        return get_media_url_path(self.archive)
 
     def __str__(self):
         return self.name

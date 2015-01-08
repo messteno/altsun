@@ -10,11 +10,15 @@ class ReleaseSerializer(serializers.ModelSerializer):
     content = serializers.CharField(required=True)
     release = serializers.CharField(required=True)
     create_date = serializers.DateTimeField(required=True)
+    has_archive = serializers.SerializerMethodField()
 
     class Meta:
         model = Release
         fields = ('id', 'name', 'content', 'create_date', 'release', 
-                  'embed', 'podcast', )
+                  'embed', 'podcast', 'has_archive', )
+
+    def get_has_archive(self, obj):
+        return obj.archive is not None
 
 
 class ArtistImageSerializer(serializers.ModelSerializer):

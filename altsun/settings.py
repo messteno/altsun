@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'embed_video',
     'news',
     'release',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -118,6 +119,10 @@ REST_FRAMEWORK = {
     ),
     'EXCEPTION_HANDLER': 'utils.exceptions.rest_exception_handler'
 }
+
+DEMO_EMAIL = 'info@alt-sun.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 if not DEBUG:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = (

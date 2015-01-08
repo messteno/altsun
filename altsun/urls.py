@@ -6,8 +6,10 @@ from .viewsets import UserViewSet
 from .views import ProfileView, LogoutView, LoginView
 from django.conf.urls.static import static
 from django.conf import settings
-from news.viewsets import NewsViewSet, NewsItemViewSet
-from release.viewsets import ReleaseViewSet, ReleaseItemViewSet, ArtistViewSet, ArtistItemViewSet
+from news.viewsets import NewsViewSet
+from news.views import NewsItemView
+from release.viewsets import ReleaseViewSet, ArtistViewSet
+from release.views import ReleaseDownloadView, ReleaseItemView, ArtistItemView
 
 
 router = routers.DefaultRouter()
@@ -26,9 +28,10 @@ urlpatterns = patterns('',
     url(r'^api/profile/', ProfileView.as_view()),
     url(r'^api/logout/', LogoutView.as_view()),
     url(r'^api/login/', LoginView.as_view()),
-    url(r'^api/news/item/(\d+)/', NewsItemViewSet.as_view()),
-    url(r'^api/releases/item/(\d+)/', ReleaseItemViewSet.as_view()),
-    url(r'^api/artists/item/(\d+)/', ArtistItemViewSet.as_view()),
+    url(r'^api/news/item/(\d+)/', NewsItemView.as_view()),
+    url(r'^api/releases/item/(\d+)/', ReleaseItemView.as_view()),
+    url(r'^api/artists/item/(\d+)/', ArtistItemView.as_view()),
+    url(r'^api/releases/download/', ReleaseDownloadView.as_view()),
     url(r'^api/', include(router.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -1,10 +1,9 @@
 from django.contrib import admin
 from release.models import Release, Artist, ArtistImage
 from django.db import models
-from embed_video.admin import AdminVideoMixin
-from embed_video.fields import EmbedVideoField
 from django.contrib.admin.widgets import AdminFileWidget
 from django import forms
+from embed_video.admin import AdminVideoMixin
 from django.utils.safestring import mark_safe
 from django_summernote.admin import SummernoteModelAdmin
 
@@ -36,6 +35,7 @@ class GalleryImageForm(forms.ModelForm):
             'image' : AdminImageWidget,
         }
 
+
 class ReleasesInline(admin.TabularInline):
     model = Release
 
@@ -57,9 +57,9 @@ class ArtistAdmin(SummernoteModelAdmin):
 admin.site.register(Artist, ArtistAdmin)
 
 
-class ReleaseAdmin(SummernoteModelAdmin):
+class ReleaseAdmin(AdminVideoMixin, SummernoteModelAdmin):
     list_display_links = ('id', )
-    list_display = ('id', 'name', 'content', 'release', 'podcast', )
+    list_display = ('id', 'name', 'content', 'release', 'podcast', 'archive', )
     search_fields = ('name', 'content', )
     list_editable = ()
 admin.site.register(Release, ReleaseAdmin)

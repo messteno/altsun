@@ -132,6 +132,10 @@ h1.main-release-title {
     margin-bottom: 10px;
 }
 
+.main-release-sc {
+    height: 285px;
+}
+
 h1 span.page-title {
     color: black;
     background: rgba(200,200,200,0.6);
@@ -212,6 +216,7 @@ h2 .link:hover {
 
 .main-news img {
     width: 100%;
+    display: block;
 }
 
 .releases iframe,
@@ -245,4 +250,9 @@ h2 .link:hover {
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.release-download-modal .modal-dialog {
+    width: 350px;
+}
+
 
