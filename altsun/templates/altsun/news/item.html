@@ -15,7 +15,9 @@
         </div>
         <div class="col-sm-3 col-sm-offset-1 col-xs-6 neigbour" ng-repeat="neigbour in news.neigbours">
             <h2 class="news-title">
-                <a href ui-sref="news.item({newsId: neigbour.id})" class="link">[[neigbour.title]]</a>
+                <a href ui-sref="news.item({newsId: neigbour.id})" class="link">
+                    [[ neigbour.title | limitTo: 50 ]] [[neigbour.title.length > 50 ? '...' : '']]
+                </a>
             </h2>
             <a href ui-sref="news.item({newsId: neigbour.id})">
                 <img ng-src="[[ neigbour.images[0].preview_sm ]]" />
