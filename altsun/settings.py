@@ -120,7 +120,7 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'utils.exceptions.rest_exception_handler'
 }
 
-DEMO_EMAIL = 'info@alt-sun.com'
+DEMO_EMAIL = 'demo@alt-sun.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
