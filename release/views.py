@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from release.forms import ReleaseDownloadForm
 from utils.mixins import AjaxCapableProcessFormViewMixin
+from utils import get_media_url_path
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.views.generic.edit import FormView
 from django.shortcuts import get_object_or_404
 from django.template import Context
 from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
 
@@ -62,7 +64,10 @@ class ReleaseDownloadView(AjaxCapableProcessFormViewMixin, FormView):
         release = form.cleaned_data['release']
         context = Context({
             'release': release.name,
-            'url': release.archive
+            'url': self.request.build_absolute_uri(release.archive.url)
         })
+        text_content = render_to_string('altsun/mail/release.txt', context)
         html_content = render_to_string('altsun/mail/release.html', context)
-        send_mail(subject, html_content, from_email, [to], fail_silently=True)
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()

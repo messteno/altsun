@@ -77,6 +77,7 @@ app.controller('DownloadReleaseModalCtrl', function($scope, $modalInstance, rele
     });
     $scope.form.data.release = releaseId;
     $scope.form.method = 'POST';
+    $scope.form.focus.email = true;
 });
 
 app.controller('PodcastsCtrl', function($scope, $sce, Releases) {
