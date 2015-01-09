@@ -18,7 +18,7 @@
             <div class="neigbour" ng-repeat="neigbour in release.neigbours">
                 <h2 class="release-title">
                     <a href ui-sref="releases.item({releasesId: neigbour.id})" class="link">
-                        [[ neigbour.name | limitTo: 50 ]] [[neigbour.name.length > 50 ? '...' : '']]
+                        [[ neigbour.name | limitTo: 50 ]][[neigbour.name.length > 50 ? '...' : '']]
                     </a>
                 </h2>
                 <div ng-bind-html="neigbour.embed"></div>

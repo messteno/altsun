@@ -16,7 +16,7 @@
             <div class="release" ng-repeat="release in artist.releases">
                 <h2 class="release-title">
                     <a ng-href="[[release.link]]" class="link">
-                        [[ release.name | limitTo: 50 ]] [[release.name.length > 50 ? '...' : '']]
+                        [[ release.name | limitTo: 50 ]][[release.name.length > 50 ? '...' : '']]
                     </a>
                 </h2>
                 <div ng-bind-html="release.embed"></div>
