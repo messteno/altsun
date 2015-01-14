@@ -18,9 +18,9 @@ app.controller('MainCtrl', function($scope, $modal, $window, $location, $sce, lo
             var release = $scope.releases.results[i];
             release.embed = $sce.trustAsHtml(release.embed);
             if (release.podcast) {
-                release.link = '/#/releases/' + release.id;
-            } else {
                 release.link = '/#/podcasts/' + release.id;
+            } else {
+                release.link = '/#/releases/' + release.id;
             }
         }
     });

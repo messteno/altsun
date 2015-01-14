@@ -1,5 +1,7 @@
+import os
 from django.db import models
 from django.utils import timezone
+from django.dispatch import receiver
 from embed_video.fields import EmbedVideoField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -104,3 +106,27 @@ class Release(models.Model):
 
     def __unicode__(self):
         return self.name
+
+@receiver(models.signals.post_delete, sender=Release)
+def auto_delete_archive_on_delete(sender, instance, **kwargs):
+    if instance.archive:
+        if os.path.isfile(instance.archive.path):
+            os.remove(instance.archive.path)
+
+@receiver(models.signals.pre_save, sender=Release)
+def auto_delete_archive_on_change(sender, instance, **kwargs):
+    if not instance.pk:
+        return False
+
+    try:
+        old_archive = Release.objects.get(pk=instance.pk).archive
+    except Release.DoesNotExist:
+        return False
+
+    if not old_archive:
+        return False
+
+    new_archive = instance.archive
+    if not old_archive == new_archive:
+        if os.path.isfile(old_archive.path):
+            os.remove(old_archive.path)

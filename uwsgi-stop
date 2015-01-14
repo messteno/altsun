@@ -1,0 +1,1 @@
+uwsgi --stop /var/www/alt-sun.com/tmp/altsun.pid

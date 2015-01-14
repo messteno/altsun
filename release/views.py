@@ -25,11 +25,11 @@ class ReleaseItemView(APIView):
             queryset = Release.objects.all()
         else:
             queryset = Release.objects.filter(podcast=podcast)
-        news = get_object_or_404(queryset, pk=pk)
+        release = get_object_or_404(queryset, pk=pk)
         serializer = ReleaseSerializer(release)
         data = serializer.data
         data['neigbours'] = []
-        neigbours = news.get_neigbours()
+        neigbours = release.get_neigbours()
         for neigbour in neigbours:
             serializer = ReleaseSerializer(neigbour)
             data['neigbours'].append(serializer.data)

@@ -18,7 +18,7 @@ class ReleaseSerializer(serializers.ModelSerializer):
                   'embed', 'podcast', 'has_archive', )
 
     def get_has_archive(self, obj):
-        return obj.archive is not None
+        return bool(obj.archive)
 
 
 class ArtistImageSerializer(serializers.ModelSerializer):
