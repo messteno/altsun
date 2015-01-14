@@ -26,7 +26,7 @@ class ReleaseItemView(APIView):
         else:
             queryset = Release.objects.filter(podcast=podcast)
         news = get_object_or_404(queryset, pk=pk)
-        serializer = ReleaseSerializer(news)
+        serializer = ReleaseSerializer(release)
         data = serializer.data
         data['neigbours'] = []
         neigbours = news.get_neigbours()
