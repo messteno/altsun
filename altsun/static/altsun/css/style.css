@@ -248,9 +248,6 @@ h2 .link:hover {
 
 .logo {
     margin: -50px 0 0 -25px;
-    -webkit-animation:spin 5s linear infinite;
-    -moz-animation:spin 5s linear infinite;
-    animation:spin 5s linear infinite;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }

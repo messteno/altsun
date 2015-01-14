@@ -109,9 +109,9 @@ app.controller('ArtistsItemCtrl', function($scope, $stateParams, $sce, ArtistsIt
             var release = $scope.artist.releases[i];
             release.embed = $sce.trustAsHtml(release.embed);
             if (release.podcast) {
-                release.link = '/#/releases/' + release.id;
-            } else {
                 release.link = '/#/podcasts/' + release.id;
+            } else {
+                release.link = '/#/releases/' + release.id;
             }
         }
     }, function() {
