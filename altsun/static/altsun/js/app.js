@@ -4,25 +4,24 @@ var baseSettings = function($httpProvider, $interpolateProvider) {
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
 
-    $httpProvider.defaults.transformRequest = [function(data)
-    {
+    $httpProvider.defaults.transformRequest = [function(data) {
         var param = function(obj) {
             var query = '';
             var name, value, fullSubName, subName, subValue, innerObj, i;
 
-            for(name in obj) {
+            for (name in obj) {
                 value = obj[name];
 
-                if(value instanceof Array) {
-                    for(i=0; i<value.length; ++i) {
+                if (value instanceof Array) {
+                    for (i = 0; i < value.length; ++i) {
                         subValue = value[i];
                         fullSubName = name + '[' + i + ']';
                         innerObj = {};
                         innerObj[fullSubName] = subValue;
                         query += param(innerObj) + '&';
                     }
-                } else if(value instanceof Object) {
-                    for(subName in value) {
+                } else if (value instanceof Object) {
+                    for (subName in value) {
                         subValue = value[subName];
                         fullSubName = name + '[' + subName + ']';
                         innerObj = {};
