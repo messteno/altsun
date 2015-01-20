@@ -47,6 +47,10 @@ pre {
     margin-bottom: 20px;
 }
 
+.modal-backdrop {
+    bottom: 0;
+}
+
 .navbar-default {
     margin-top: 50px;
     margin-bottom: 20px;
