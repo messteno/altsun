@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from release.forms import ReleaseDownloadForm
 from utils.mixins import AjaxCapableProcessFormViewMixin
