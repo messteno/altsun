@@ -1,28 +1,13 @@
 'use strict';
 
-app.directive('owlCarousel', function () {  
-    return {  
-        restrict: 'E',  
-        link: function (scope, element, attrs) {  
-            $(element).owlCarousel({
-                autoPlay: 5000,
-                stopOnHover: true,  
-                slideSpeed: 300,
-                paginationSpeed: 400,
-                singleItem: true
-            });
-        }  
-    };  
-});
-
 app.directive('focusMe', function($timeout, $parse) {
     return {
         link: function(scope, element, attrs) {
             var model = $parse(attrs.focusMe);
             scope.$watch(model, function(value) {
-                if(value === true) { 
+                if(value === true) {
                     $timeout(function() {
-                        element[0].focus(); 
+                        element[0].focus();
                     });
                 }
             });
